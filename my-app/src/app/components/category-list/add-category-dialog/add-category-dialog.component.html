@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Add category</h1>
+<form [formGroup]="addCategoryForm" (ngSubmit)="onSubmit(addCategoryForm.value)">
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Category name</mat-label>
+      <input id="name" formControlName="name" type="text" matInput>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Parent category</mat-label>
+      <input id="parentCategory" formControlName="parentCategory" matInput
+             (input)="parentCategoryInput($event.target.value)" [matAutocomplete]="auto"
+             [formControl]="formControl">
+
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayAutocompleteOption">
+        <mat-option *ngFor="let category of parentCategoryAutocomplete" [value]="category">
+          {{category.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button type="submit">Add</button>
+    <button mat-button (click)="onExitClick()" type="button">Exit</button>
+  </div>
+</form>

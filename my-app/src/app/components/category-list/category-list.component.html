@@ -1,0 +1,24 @@
+<div class="actions-row">
+  <button mat-raised-button (click)="openAddCategoryDialog()"><mat-icon>add</mat-icon>Add category</button>
+</div>
+<mat-table [dataSource]="categories" matSort (matSortChange)="sortEvent($event)" [matSortDisabled]="isRequestProcessing">
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>id</mat-header-cell>
+    <mat-cell *matCellDef="let category">{{category.id}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>name</mat-header-cell>
+    <mat-cell *matCellDef="let category">{{category.name}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="parent">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>parent</mat-header-cell>
+    <mat-cell *matCellDef="let category">{{category.parent}}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="['id', 'name', 'parent']"></mat-header-row>
+  <mat-row *matRowDef="let category; columns: ['id', 'name', 'parent']"></mat-row>
+</mat-table>
+<mat-paginator [disabled]="isRequestProcessing" [length]="totalProductsCount" [pageSize]="pageSize" [pageSizeOptions]="[10, 20, 50, 100]" (page)="paginatorEvent($event)"></mat-paginator>
+

@@ -1,0 +1,19 @@
+.container {
+  margin: 100px auto 0 auto;
+  max-width: 1440px;
+}
+mat-sidenav {
+  padding-top: 64px;
+  a {
+    width: 200px;
+    padding: 5px 30px;
+    text-align: left;
+    mat-icon {
+      margin-right: 5px;
+      margin-left: 5px;
+    }
+  }
+}
+mat-sidenav-content {
+  min-height: 100vh;
+}

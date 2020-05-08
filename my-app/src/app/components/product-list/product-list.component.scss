@@ -1,0 +1,15 @@
+.products-list {
+  table {
+    border-collapse: collapse;
+    th, td {
+      border: 1px solid black;
+      padding: 10px 20px;
+    }
+    button {
+      margin-right: 10px;
+    }
+    button:last-child {
+      margin-right: 0;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<mat-toolbar color="primary" *ngIf="isVisible()">
+
+  <button (click)="openSidenav()" mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <div class="menu-buttons">
+    <mat-menu #appMenu>
+      <button mat-menu-item (click)="settings()">Settings</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="appMenu">
+      Menu
+    </button>
+  </div>
+
+</mat-toolbar>

@@ -1,0 +1,33 @@
+<mat-sidenav-container>
+
+  <mat-sidenav #sidenav [fixedInViewport]="true">
+    <p>
+      <a mat-button routerLink="admin-panel" (click)="sidenav.close()">
+        <mat-icon>dashboard</mat-icon>
+        Dashboard
+      </a>
+    </p>
+    <mat-divider></mat-divider>
+    <p>
+      <a mat-button routerLink="admin-panel/products" (click)="sidenav.close()">
+        <mat-icon>store</mat-icon>
+        Products
+      </a>
+    </p>
+    <p>
+      <a mat-button routerLink="admin-panel/categories" (click)="sidenav.close()">
+        <mat-icon>store</mat-icon>
+        Categories
+      </a>
+    </p>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet name="toolbar"></router-outlet>
+
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<simple-notifications></simple-notifications>

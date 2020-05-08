@@ -1,0 +1,7 @@
+admin_lte:
+  options:
+  control_sidebar:
+  theme:
+  knp_menu:
+  routes:
+    adminlte_welcome: homepage

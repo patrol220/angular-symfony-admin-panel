@@ -1,0 +1,45 @@
+<div class="actions-row">
+  <button mat-raised-button (click)="openAddProductDialog()"><mat-icon>add</mat-icon>Add product</button>
+</div>
+<mat-table [dataSource]="products" matSort (matSortChange)="sortEvent($event)" [matSortDisabled]="isRequestProcessing">
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>id</mat-header-cell>
+    <mat-cell *matCellDef="let product">{{product.id}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>name</mat-header-cell>
+    <mat-cell *matCellDef="let product"><a [routerLink]="['/admin-panel/product', product.id]" mat-button><p>{{product.name}}</p></a></mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="weight">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>weight</mat-header-cell>
+    <mat-cell *matCellDef="let product"><p>{{product.weight}}</p></mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>price</mat-header-cell>
+    <mat-cell *matCellDef="let product"><p>{{product.price}}</p></mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="category">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>category</mat-header-cell>
+    <mat-cell *matCellDef="let product">
+      <p *ngIf="product.category"><button mat-button>{{product.category.name}}</button></p>
+      <p *ngIf="product.category === null"><button mat-button matTooltip="Assign category" matTooltipPosition="left" color="accent">no category</button></p>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>actions</mat-header-cell>
+    <mat-cell *matCellDef="let product">
+      <button mat-stroked-button>Edit</button>
+      <button mat-stroked-button color="warn" (click)="delete(product.id)">Delete</button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="['id', 'name', 'weight', 'price', 'category', 'actions']"></mat-header-row>
+  <mat-row *matRowDef="let product; columns: ['id', 'name', 'weight', 'price', 'category', 'actions']"></mat-row>
+</mat-table>
+<mat-paginator [disabled]="isRequestProcessing" [length]="totalProductsCount" [pageSize]="pageSize" [pageSizeOptions]="[10, 20, 50, 100]" (page)="paginatorEvent($event)"></mat-paginator>
+
