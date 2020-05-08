@@ -10,7 +10,7 @@ import {SidenavService} from './services/sidenav/sidenav.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit {
-  title = 'my-app';
+  title = 'angular-frontend';
 
   @ViewChild('sidenav') public sidenav: MatSidenav;
 
