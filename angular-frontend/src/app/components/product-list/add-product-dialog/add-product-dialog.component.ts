@@ -41,7 +41,6 @@ export class AddProductDialogComponent implements OnInit {
     this.categoryInput = debounce(this.categoryInput, 500);
   }
 
-
   onExitClick() {
     this.dialogRef.close();
   }
