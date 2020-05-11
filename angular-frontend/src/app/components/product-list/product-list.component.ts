@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ProductService} from '../../services/product/product.service';
 import {ProductModel} from '../../models/product.model';
 import {ProductsResponseModel} from '../../models/Response/products-response.model';
 import {CursorModel} from '../../models/Response/Common/cursor.model';
 import {PageEvent} from '@angular/material/paginator';
-import {Sort} from '@angular/material/sort';
+import {MatSort, Sort} from '@angular/material/sort';
 import {MatDialog} from '@angular/material/dialog';
 import {AddProductDialogComponent} from './add-product-dialog/add-product-dialog.component';
 
@@ -21,6 +21,7 @@ export class ProductListComponent implements OnInit {
   public totalProductsCount;
   public isRequestProcessing;
   public sort;
+  @ViewChild(MatSort, {static: false}) matSort: MatSort;
 
   constructor(
     private productService: ProductService,
@@ -68,5 +69,16 @@ export class ProductListComponent implements OnInit {
 
   openAddProductDialog() {
     let dialogRef = this.addProductDialog.open(AddProductDialogComponent);
+    dialogRef.componentInstance.onAdd.subscribe(() => {
+      this.onNewProductAdded();
+    });
+  }
+
+  onNewProductAdded() {
+    this.matSort.sort({
+      id: 'created',
+      start: 'desc',
+      disableClear: false,
+    });
   }
 }

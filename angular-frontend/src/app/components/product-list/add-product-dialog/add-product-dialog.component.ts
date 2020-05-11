@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {ProductService} from '../../../services/product/product.service';
@@ -20,6 +20,7 @@ export class AddProductDialogComponent implements OnInit {
   addProductForm: FormGroup;
   categoryAutocomplete: ProductCategoryModel[];
   formControl = new FormControl();
+  onAdd = new EventEmitter();
 
   constructor(
     public dialogRef: MatDialogRef<AddProductDialogComponent>,
@@ -50,6 +51,7 @@ export class AddProductDialogComponent implements OnInit {
       .subscribe(() => {
         this.dialogRef.close();
         this.notificationsService.success('Success!', 'Product successfully added');
+        this.onAdd.emit();
       });
   }
 
