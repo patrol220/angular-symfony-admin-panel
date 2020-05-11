@@ -3,6 +3,7 @@
 namespace App\Transformer;
 
 use App\Entity\Product\Product;
+use DateTime;
 use League\Fractal\TransformerAbstract;
 
 class ProductTransformer extends TransformerAbstract
@@ -19,7 +20,9 @@ class ProductTransformer extends TransformerAbstract
             'name' => $product->getName(),
             'weight' => $product->getWeight(),
             'price' => $product->getPrice(),
-            'category' => $category
+            'category' => $category,
+            'created' => $product->getCreated()->format(DateTime::ISO8601),
+            'updated' => $product->getUpdated()->format(DateTime::ISO8601),
         ];
     }
 }

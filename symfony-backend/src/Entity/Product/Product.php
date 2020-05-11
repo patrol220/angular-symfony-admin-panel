@@ -108,9 +108,6 @@ class Product
         return $this->created;
     }
 
-    /**
-     * @return mixed
-     */
     public function getUpdated(): DateTime
     {
         return $this->updated;
