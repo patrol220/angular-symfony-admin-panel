@@ -2,11 +2,13 @@
 
 namespace App\Entity\Product;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="products", schema="products")
  * @ORM\Entity(repositoryClass="App\Repository\Product\ProductRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Product
 {
@@ -31,6 +33,16 @@ class Product
      * @ORM\Column(type="decimal", precision=20, scale=2, nullable=true)
      */
     private $price;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated;
 
     /**
      * @var $category ProductCategory|null
@@ -84,9 +96,35 @@ class Product
         return $this->category;
     }
 
-    public function setCategory(?ProductCategory $category): void
+    public function setCategory(?ProductCategory $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getCreated(): DateTime
+    {
+        return $this->created;
+    }
+
+    public function getUpdated(): DateTime
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function onPrePersist() {
+        $this->created = $this->updated = new DateTime();
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function onPreUpdate() {
+        $this->updated = new DateTime();
     }
 
 }

@@ -9,7 +9,9 @@
 
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef mat-sort-header>name</mat-header-cell>
-    <mat-cell *matCellDef="let product"><a [routerLink]="['/admin-panel/product', product.id]" mat-button><p>{{product.name}}</p></a></mat-cell>
+    <mat-cell *matCellDef="let product">
+      <p><button [routerLink]="['/admin-panel/product', product.id]" mat-button>{{product.name}}</button></p>
+    </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="weight">
@@ -30,6 +32,13 @@
     </mat-cell>
   </ng-container>
 
+  <ng-container matColumnDef="created">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>created</mat-header-cell>
+    <mat-cell *matCellDef="let product">
+      <span matTooltip="{{product.created | date:'short'}}" matTooltipPosition="above">{{product.created | date}}</span>
+    </mat-cell>
+  </ng-container>
+
   <ng-container matColumnDef="actions">
     <mat-header-cell *matHeaderCellDef>actions</mat-header-cell>
     <mat-cell *matCellDef="let product">
@@ -38,8 +47,8 @@
     </mat-cell>
   </ng-container>
 
-  <mat-header-row *matHeaderRowDef="['id', 'name', 'weight', 'price', 'category', 'actions']"></mat-header-row>
-  <mat-row *matRowDef="let product; columns: ['id', 'name', 'weight', 'price', 'category', 'actions']"></mat-row>
+  <mat-header-row *matHeaderRowDef="['id', 'name', 'weight', 'price', 'category', 'created', 'actions']"></mat-header-row>
+  <mat-row *matRowDef="let product; columns: ['id', 'name', 'weight', 'price', 'category', 'created', 'actions']"></mat-row>
 </mat-table>
 <mat-paginator [disabled]="isRequestProcessing" [length]="totalProductsCount" [pageSize]="pageSize" [pageSizeOptions]="[10, 20, 50, 100]" (page)="paginatorEvent($event)"></mat-paginator>
 

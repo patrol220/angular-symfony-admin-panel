@@ -34,7 +34,16 @@ export class ProductService {
     };
 
     return this.http
-      .get<ProductsResponseModel>('http://localhost:80/api/products', options);
+      .get<ProductsResponseModel>('http://localhost:80/api/products', options)
+      .pipe(
+        map(response => {
+          response.data.map(value => {
+            value.created = new Date(value.created);
+            value.updated = new Date(value.updated);
+          });
+          return response;
+        })
+      );
   }
 
   getProduct(id: number): Observable<ProductModel> {
