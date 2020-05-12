@@ -6,8 +6,6 @@ Purpose of this project is to learn and practice angular and symfony development
 
 For running this project [docker](https://docs.docker.com/get-docker/) is needed
 
-First get into symfony-backend folder
-
-```cd symfony-backend```
+First get into symfony-backend folder ```cd symfony-backend```
 
 Next fire ```docker-compose up``` command
