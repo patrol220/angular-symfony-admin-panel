@@ -16,8 +16,6 @@ RUN docker-php-ext-install zip
 RUN docker-php-ext-enable apcu
 RUN docker-php-ext-enable redis
 
-RUN bash -c "wget http://getcomposer.org/composer.phar && mv composer.phar /usr/local/bin/composer"
-
 WORKDIR /usr/src/app
 
 COPY / /usr/src/app
