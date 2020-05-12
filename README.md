@@ -31,3 +31,5 @@ Go to angular-frontend directory
 run ```npm install```
 
 after build run ```ng serve```
+
+when compilation is done, http://localhost:4200/login address will be available
