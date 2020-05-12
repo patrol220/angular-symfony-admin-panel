@@ -24,6 +24,10 @@ Generate private key files
 
 ```docker exec -it symfony-backend_php_1 openssl pkey -in config/jwt/private.pem -out config/jwt/public.pem -pubout```
 
+Run migrations ```docker exec -it symfony-backend_php_1 bin/console doctrine:migrations:migrate```
+
+Create new admin user ```docker exec -it symfony-backend_php_1 bin/console app:create-admin-user <name> <email> <password>```
+
 ## Frontend
 
 Go to angular-frontend directory
