@@ -10,4 +10,4 @@ First get into symfony-backend folder
 
 ```cd symfony-backend```
 
-
+Next fire ```docker-compose up``` command
