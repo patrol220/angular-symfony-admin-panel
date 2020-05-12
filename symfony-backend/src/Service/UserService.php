@@ -68,6 +68,7 @@ class UserService
         );
         $user->setUsername($username);
         $user->setEmail($email);
+        $user->setRoles(['ROLE_ADMIN']);
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
