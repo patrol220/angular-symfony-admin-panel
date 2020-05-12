@@ -4,7 +4,7 @@ Purpose of this project is to learn and practice angular and symfony development
 
 # Running project
 
-For running this project [docker](https://docs.docker.com/get-docker/) is needed
+For running this project [docker](https://docs.docker.com/get-docker/) and [npm](https://www.npmjs.com/get-npm) is needed
 
 ## Backend
 
