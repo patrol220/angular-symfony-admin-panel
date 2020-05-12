@@ -8,9 +8,9 @@ For running this project [docker](https://docs.docker.com/get-docker/) is needed
 
 ## Backend
 
-First get into symfony-backend folder ```cd symfony-backend```
+Go to symfony-backend directory
 
-Next fire ```docker-compose up -d```
+run ```docker-compose up -d```
 
 After docker done it's job run ```composer install```
 
