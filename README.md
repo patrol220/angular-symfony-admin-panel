@@ -4,6 +4,10 @@ Purpose of this project is to learn and practice angular and symfony development
 
 # Running project
 
+For running this project [docker](https://docs.docker.com/get-docker/) is needed
+
 First get into symfony-backend folder
 
 ```cd symfony-backend```
+
+
