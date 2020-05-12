@@ -16,7 +16,7 @@ After docker done it's job run ```composer install```
 
 Set passphrase for JWT key in .env ```JWT_PASSPHRASE```
 
-Generate public key files
+Generate private key files
 
 ```docker exec -it symfony-backend_php_1 mkdir -p config/jwt```
 
