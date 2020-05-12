@@ -5,4 +5,5 @@ Purpose of this project is to learn and practice angular and symfony development
 # Running project
 
 First get into symfony-backend folder
+
 ```cd symfony-backend```
