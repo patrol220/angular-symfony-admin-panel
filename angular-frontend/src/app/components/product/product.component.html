@@ -1,1 +1,22 @@
-<p>product works!</p>
+<div class="product-info" *ngIf="product !== undefined">
+  <h1>{{ product.name }}</h1>
+  <p>
+    <span class="property-description">Category: </span>
+    <span class="property-value">{{ product.category !== null ? product.category.name : 'no category' }}</span>
+  </p>
+  <p>
+    <span class="property-description">Weight: </span>
+    <span class="property-value">{{  product.weight }}</span>
+  </p>
+  <p>
+    <span class="property-description">Created: </span>
+    <span class="property-value">{{ product.created | date:"short" }}</span>
+  </p>
+  <p>
+    <span class="property-description">Updated: </span>
+    <span class="property-value">{{ product.updated | date: "short" }}</span>
+  </p>
+</div>
+<div *ngIf="product === undefined">
+  <mat-spinner></mat-spinner>
+</div>

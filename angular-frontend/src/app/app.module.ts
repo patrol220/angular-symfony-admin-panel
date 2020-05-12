@@ -35,6 +35,7 @@ import { AddCategoryDialogComponent } from './components/category-list/add-categ
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { AddProductDialogComponent } from './components/product-list/add-product-dialog/add-product-dialog.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { AddProductDialogComponent } from './components/product-list/add-product
     MatTooltipModule,
     MatDialogModule,
     FormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     {

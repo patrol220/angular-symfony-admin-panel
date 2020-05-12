@@ -11,6 +11,8 @@ import {ProductModel} from '../../models/product.model';
 })
 export class ProductComponent implements OnInit {
 
+  public product: ProductModel;
+
   constructor(private route: ActivatedRoute, private productService: ProductService) {
   }
 
@@ -20,7 +22,7 @@ export class ProductComponent implements OnInit {
         (params: ParamMap) => this.productService.getProduct(Number(params.get('id')))
       )
     ).subscribe((responseData: ProductModel) => {
-      console.log(responseData);
+      this.product = responseData;
     });
   }
 
