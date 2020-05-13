@@ -25,7 +25,7 @@ export class ProductService {
     }
 
     if (sort !== null) {
-      let sortParam = sort.direction === 'desc' ? '-' + sort.active : sort.active;
+      const sortParam = sort.direction === 'desc' ? '-' + sort.active : sort.active;
       httpParams = httpParams.append('sort', sortParam);
     }
 
@@ -60,6 +60,16 @@ export class ProductService {
       category_id: newProduct.category !== null ? newProduct.category.id : null,
       weight: newProduct.weight,
       price: newProduct.price
+    });
+  }
+
+  addProductImage(file: File, productId: number) {
+    // const formData: FormData = new FormData();
+    // formData.append('file_key', file);
+    // formData.append('product_id', productId.toString());
+
+    return this.http.post('http://localhost:80/api/product-image', {}, {
+
     });
   }
 }

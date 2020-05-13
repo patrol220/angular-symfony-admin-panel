@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Add product</h1>
-<form [formGroup]="addProductForm" (ngSubmit)="onSubmit(addProductForm.value)">
-  <mat-dialog-content>
+<mat-dialog-content>
+  <form [formGroup]="addProductForm">
     <mat-form-field>
       <mat-label>Product name</mat-label>
       <input id="name" formControlName="name" type="text" matInput>
@@ -28,9 +28,12 @@
       <mat-label>Price</mat-label>
       <input id="price" formControlName="price" type="number" matInput>
     </mat-form-field>
-  </mat-dialog-content>
-  <mat-dialog-actions>
-    <button mat-button type="submit">Add</button>
-    <button mat-button type="button" (click)="onExitClick()">Exit</button>
-  </mat-dialog-actions>
-</form>
+  </form>
+  <input #fileInput hidden="true" type="file" onclick="this.value=null" (change)="fileInputChange($event.target.files)" accept="image/*"/>
+  <button mat-flat-button color="primary" (click)="fileInput.click()">Choose image</button>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button type="submit" (click)="onAddClick(addProductForm.value)">Add</button>
+  <button mat-button type="button" (click)="onExitClick()">Exit</button>
+</mat-dialog-actions>
+

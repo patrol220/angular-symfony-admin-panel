@@ -14,10 +14,21 @@ export class RequestInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+
+    const requestProperties: any = {};
+
+    if (request.headers.get('Content-Type') === null) {
+      requestProperties.setHeaders = {'Content-Type': 'application/json'};
+    }
+
+    requestProperties.withCredentials = true;
+
     const modifiedRequest = request.clone({
-      setHeaders: {'Content-Type': 'application/json'},
       withCredentials: true
     });
+
+    console.log(modifiedRequest);
+
     return next.handle(modifiedRequest);
   }
 }

@@ -21,6 +21,7 @@ export class AddProductDialogComponent implements OnInit {
   categoryAutocomplete: ProductCategoryModel[];
   formControl = new FormControl();
   onAdd = new EventEmitter();
+  fileToUpload: File = null;
 
   constructor(
     public dialogRef: MatDialogRef<AddProductDialogComponent>,
@@ -45,13 +46,17 @@ export class AddProductDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onSubmit(newProduct: ProductModel) {
+  onAddClick(newProduct: ProductModel) {
     this.productService.addProduct(newProduct)
-      .subscribe(() => {
+      .subscribe((productModel: ProductModel) => {
         this.dialogRef.close();
         this.notificationsService.success('Success!', 'Product successfully added');
         this.onAdd.emit();
       });
+
+    this.productService.addProductImage(this.fileToUpload, 2).subscribe(() => {
+
+    });
   }
 
   categoryInput(inputValue) {
@@ -69,5 +74,10 @@ export class AddProductDialogComponent implements OnInit {
 
   displayAutocompleteOption(category: ProductCategoryModel) {
     return category && category.name ? category.name : '';
+  }
+
+  fileInputChange(files: FileList) {
+    this.fileToUpload = files.item(0);
+    console.log(this.fileToUpload);
   }
 }

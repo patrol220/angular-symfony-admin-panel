@@ -137,7 +137,7 @@ class ProductService
         $this->entityManager->flush();
     }
 
-    public function addProduct(ProductDto $productDto): int
+    public function addProduct(ProductDto $productDto): array
     {
         $product = new Product();
         $product->setName($productDto->getName());
@@ -153,7 +153,7 @@ class ProductService
         $this->entityManager->persist($product);
         $this->entityManager->flush();
 
-        return $product->getId();
+        return (new ProductTransformer())->transform($product);
     }
 
     public function getProductsStatistics()

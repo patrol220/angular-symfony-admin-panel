@@ -42,6 +42,16 @@ class ProductController extends AbstractController
     }
 
     /**
+     * @Route("api/product-image", name="add_product_image", methods={"POST"})
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function addProductImage(Request $request, ProductService $productService): JsonResponse
+    {
+        var_dump($request->getContentType());
+        return new JsonResponse();
+    }
+
+    /**
      * @Route("api/product/{id}", name="delete_product", methods={"DELETE"})
      * @IsGranted("ROLE_ADMIN")
      */
