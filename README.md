@@ -14,9 +14,9 @@ For running this project [docker](https://docs.docker.com/get-docker/) and [npm]
 
 - After docker done it's job run ```docker exec -it symfony-backend_php_1 composer install```
 
-Set passphrase for JWT key in .env ```JWT_PASSPHRASE```
+- Set passphrase for JWT key in .env ```JWT_PASSPHRASE```
 
-Generate private key files
+- Generate private key files
 
 ```docker exec -it symfony-backend_php_1 mkdir -p config/jwt```
 
@@ -24,20 +24,20 @@ Generate private key files
 
 ```docker exec -it symfony-backend_php_1 openssl pkey -in config/jwt/private.pem -out config/jwt/public.pem -pubout```
 
-Run migrations ```docker exec -it symfony-backend_php_1 bin/console doctrine:migrations:migrate```
+- Run migrations ```docker exec -it symfony-backend_php_1 bin/console doctrine:migrations:migrate```
 
-Create new admin user ```docker exec -it symfony-backend_php_1 bin/console app:create-admin-user <name> <email> <password>```
+- Create new admin user ```docker exec -it symfony-backend_php_1 bin/console app:create-admin-user <name> <email> <password>```
 
 ### Example data
 
-Categories - ```docker exec -it symfony-backend_php_1 php bin/console app:get-google-categories``` - Gets example categories from (google taxonomy)[https://support.google.com/merchants/answer/6324436?hl=en]
+- Categories - ```docker exec -it symfony-backend_php_1 php bin/console app:get-google-categories``` - Gets example categories from (google taxonomy)[https://support.google.com/merchants/answer/6324436?hl=en]
 
 ## Frontend
 
-Go to angular-frontend directory
+- Go to angular-frontend directory
 
-run ```npm install```
+- run ```npm install```
 
-after build run ```ng serve```
+- after build run ```ng serve```
 
-when compilation is done, http://localhost:4200/login address will be available
+- when compilation is done, http://localhost:4200/login address will be available
