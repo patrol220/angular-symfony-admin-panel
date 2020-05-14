@@ -12,7 +12,7 @@ Go to symfony-backend directory
 
 run ```docker-compose up -d```
 
-After docker done it's job run ```composer install```
+After docker done it's job run ```docker exec -it symfony-backend_php_1 composer install```
 
 Set passphrase for JWT key in .env ```JWT_PASSPHRASE```
 
