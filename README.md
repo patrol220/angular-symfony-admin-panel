@@ -28,6 +28,8 @@ Run migrations ```docker exec -it symfony-backend_php_1 bin/console doctrine:mig
 
 Create new admin user ```docker exec -it symfony-backend_php_1 bin/console app:create-admin-user <name> <email> <password>```
 
+### Example data
+
 ## Frontend
 
 Go to angular-frontend directory
