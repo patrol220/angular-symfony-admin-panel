@@ -3,9 +3,10 @@
 namespace App\Entity\Product;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
- * @ORM\Table(name="category", schema="products")
+ * @ORM\Table(name="category", schema="products", uniqueConstraints={@UniqueConstraint(name="category_idx", columns={"name", "parent_id"})})
  * @ORM\Entity(repositoryClass="App\Repository\Product\ProductCategoryRepository")
  */
 class ProductCategory
@@ -18,7 +19,7 @@ class ProductCategory
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=false, unique=true)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $name;
 
