@@ -5,6 +5,9 @@ import {Observable} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {ProductsResponseModel} from '../../models/Response/products-response.model';
 import {Sort} from '@angular/material/sort';
+import {environment} from '../../../environments/environment';
+
+const API_URL = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +37,7 @@ export class ProductService {
     };
 
     return this.http
-      .get<ProductsResponseModel>('http://localhost:80/api/products', options)
+      .get<ProductsResponseModel>(API_URL + '/api/products', options)
       .pipe(
         map(response => {
           response.data.map(value => {
@@ -47,15 +50,15 @@ export class ProductService {
   }
 
   getProduct(id: number): Observable<ProductModel> {
-    return this.http.get<ProductModel>(`http://localhost:80/api/product/${id}`);
+    return this.http.get<ProductModel>(API_URL + `/api/product/${id}`);
   }
 
   deleteProduct(id: number): Observable<{}> {
-    return this.http.delete(`http://localhost:80/api/product/${id}`);
+    return this.http.delete(API_URL + `/api/product/${id}`);
   }
 
   addProduct(newProduct: ProductModel) {
-    return this.http.post('http://localhost:80/api/product', {
+    return this.http.post(API_URL + '/api/product', {
       name: newProduct.name,
       category_id: newProduct.category !== null ? newProduct.category.id : null,
       weight: newProduct.weight,
