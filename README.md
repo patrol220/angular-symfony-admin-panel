@@ -30,6 +30,8 @@ Create new admin user ```docker exec -it symfony-backend_php_1 bin/console app:c
 
 ### Example data
 
+Categories - ```docker exec -it symfony-backend_php_1 php bin/console app:get-google-categories``` - Gets example categories from (google taxonomy)[https://support.google.com/merchants/answer/6324436?hl=en]
+
 ## Frontend
 
 Go to angular-frontend directory
