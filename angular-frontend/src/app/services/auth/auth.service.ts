@@ -1,6 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {environment} from '../../../environments/environment';
+
+const API_URL = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +21,11 @@ export class AuthService {
       observe: 'response' as 'response'
     };
 
-    return this.http.post('http://localhost:80/api/login_check', loginCredentials, options);
+    return this.http.post(API_URL + '/api/login_check', loginCredentials, options);
   }
 
   logout(): Observable<any> {
-    return this.http.post('http://localhost:80/api/logout', {});
+    return this.http.post(API_URL + '/api/logout', {});
   }
 
   isUserLogged() {

@@ -6,6 +6,9 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {ProductsCategoriesResponseModel} from '../../models/Response/products-categories-response.model';
 import {FilterModel} from '../../models/Request/filter.model';
 import {ProductCategoryModel} from '../../models/product-category.model';
+import {environment} from '../../../environments/environment';
+
+const API_URL = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -42,11 +45,11 @@ export class ProductCategoriesService {
     };
 
     return this.http
-      .get<ProductsCategoriesResponseModel>('http://localhost:80/api/categories', options);
+      .get<ProductsCategoriesResponseModel>( API_URL + '/api/categories', options);
   }
 
   addCategory(name: string, parentCategory: ProductCategoryModel) {
-    return this.http.post('http://localhost:80/api/category', {
+    return this.http.post(API_URL + '/api/category', {
       name,
       parent_id: parentCategory.id
     });
