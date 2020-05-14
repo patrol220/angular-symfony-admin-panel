@@ -26,6 +26,19 @@ class AuthenticationSuccessListener
 
         $expire = (new \DateTime())->add(new \DateInterval('PT' . $this->tokenTtl . 'S'));
 
-        $response->headers->setCookie(new Cookie($this->cookieName, $token, $expire));
+        /** @todo rethink and make it in right way */
+        $response->headers->setCookie(
+            new Cookie(
+                $this->cookieName,
+                $token,
+                $expire,
+                '/',
+                null,
+                null,
+                true,
+                false,
+                'none'
+            )
+        );
     }
 }
