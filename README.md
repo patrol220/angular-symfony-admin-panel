@@ -32,6 +32,8 @@ For running this project [docker](https://docs.docker.com/get-docker/) and [npm]
 
 - Categories - ```docker exec -it symfony-backend_php_1 php bin/console app:get-google-categories``` - Gets example categories from [google taxonomy](https://support.google.com/merchants/answer/6324436?hl=en)
 
+- Products - ```docker exec -it symfony-backend_php_1 php bin/console app:generate-random-products``` - Generates 100000 random products
+
 ## Frontend
 
 - Go to angular-frontend directory
