@@ -2,11 +2,11 @@
   <h1>{{ product.name }}</h1>
   <p>
     <span class="property-description">Category: </span>
-    <span class="property-value">{{ product.category !== null ? product.category.name : 'no category' }}</span>
+    <span class="property-value">{{ product.category !== undefined ? product.category.data.name : 'no category' }}</span>
   </p>
   <p>
     <span class="property-description">Weight: </span>
-    <span class="property-value">{{  product.weight }}</span>
+    <span class="property-value">{{ product.weight }}</span>
   </p>
   <p>
     <span class="property-description">Created: </span>

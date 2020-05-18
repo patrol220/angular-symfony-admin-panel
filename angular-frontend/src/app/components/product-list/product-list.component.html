@@ -27,7 +27,7 @@
   <ng-container matColumnDef="category">
     <mat-header-cell *matHeaderCellDef mat-sort-header>category</mat-header-cell>
     <mat-cell *matCellDef="let product">
-      <p *ngIf="product.category"><button mat-button>{{product.category.name}}</button></p>
+      <p *ngIf="product.category"><button mat-button>{{product.category.data.name}}</button></p>
       <p *ngIf="product.category === null"><button mat-button matTooltip="Assign category" matTooltipPosition="left" color="accent">no category</button></p>
     </mat-cell>
   </ng-container>

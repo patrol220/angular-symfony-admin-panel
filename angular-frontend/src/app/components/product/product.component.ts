@@ -3,6 +3,7 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
 import {ProductService} from '../../services/product/product.service';
 import {ProductModel} from '../../models/product.model';
+import {ProductResponseModel} from '../../models/Response/product-response.model';
 
 @Component({
   selector: 'app-product',
@@ -21,8 +22,9 @@ export class ProductComponent implements OnInit {
       switchMap(
         (params: ParamMap) => this.productService.getProduct(Number(params.get('id')))
       )
-    ).subscribe((responseData: ProductModel) => {
-      this.product = responseData;
+    ).subscribe((responseData: ProductResponseModel) => {
+      console.log(responseData);
+      this.product = responseData.data;
     });
   }
 

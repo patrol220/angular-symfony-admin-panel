@@ -17,6 +17,7 @@ use League\Fractal\Manager;
 use League\Fractal\Pagination\Cursor;
 use League\Fractal\Pagination\PagerfantaPaginatorAdapter;
 use League\Fractal\Resource\Collection;
+use League\Fractal\Resource\Item;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 use Symfony\Component\Routing\RouterInterface;
@@ -176,11 +177,12 @@ class ProductService
         return $productsStatistics;
     }
 
-    public function getProduct($id)
+    public function getProduct($id, IncludesDto $includesDto)
     {
-        return (new ProductTransformer())
-            ->transform(
-                $this->productRepository->find($id)
-            );
+        $this->fractal->parseIncludes($includesDto->getIncludes());
+
+        $resource = new Item($this->productRepository->find($id), new ProductTransformer());
+
+        return $this->fractal->createData($resource)->toArray();
     }
 }

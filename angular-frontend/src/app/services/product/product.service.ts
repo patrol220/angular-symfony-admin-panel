@@ -6,6 +6,7 @@ import {catchError, map} from 'rxjs/operators';
 import {ProductsResponseModel} from '../../models/Response/products-response.model';
 import {Sort} from '@angular/material/sort';
 import {environment} from '../../../environments/environment';
+import {ProductResponseModel} from '../../models/Response/product-response.model';
 
 const API_URL = environment.apiUrl;
 
@@ -32,6 +33,11 @@ export class ProductService {
       httpParams = httpParams.append('sort', sortParam);
     }
 
+    const includes = ['category'];
+    includes.forEach((include) => {
+      httpParams = httpParams.append('include', include);
+    });
+
     const options = {
       params: httpParams
     };
@@ -49,8 +55,19 @@ export class ProductService {
       );
   }
 
-  getProduct(id: number): Observable<ProductModel> {
-    return this.http.get<ProductModel>(API_URL + `/api/product/${id}`);
+  getProduct(id: number): Observable<ProductResponseModel> {
+    let httpParams = new HttpParams();
+
+    const includes = ['category'];
+    includes.forEach((include) => {
+      httpParams = httpParams.append('include', include);
+    });
+
+    const options = {
+      params: httpParams
+    };
+
+    return this.http.get<ProductResponseModel>(API_URL + `/api/product/${id}`, options);
   }
 
   deleteProduct(id: number): Observable<{}> {
@@ -60,7 +77,7 @@ export class ProductService {
   addProduct(newProduct: ProductModel) {
     return this.http.post(API_URL + '/api/product', {
       name: newProduct.name,
-      category_id: newProduct.category !== null ? newProduct.category.id : null,
+      category_id: newProduct.category.data !== null ? newProduct.category.data.id : null,
       weight: newProduct.weight,
       price: newProduct.price
     });
