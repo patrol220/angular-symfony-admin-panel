@@ -4,8 +4,10 @@ export interface ProductModel {
   weight: number;
   price: number;
   category: {
-    id: number;
-    name: string;
+    data: {
+      id: number;
+      name: string;
+    }
   };
   created: Date;
   updated: Date;

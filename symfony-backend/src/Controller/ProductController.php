@@ -38,9 +38,10 @@ class ProductController extends AbstractController
      * @Route("api/product/{id}", name="get_product", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function getProduct($id, ProductService $productService): Response
+    public function getProduct(Request $request, $id, ProductService $productService): Response
     {
-        return new JsonResponse($productService->getProduct($id));
+        $includes = IncludesDtoFactory::createFromRequest($request);
+        return new JsonResponse($productService->getProduct($id, $includes));
     }
 
     /**
