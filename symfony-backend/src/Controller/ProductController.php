@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Dto\Product\Factory\ProductDtoFactory;
+use App\Dto\Request\Factory\IncludesDtoFactory;
 use App\Dto\Request\Factory\PaginationDtoFactory;
 use App\Dto\Request\Factory\SortDtoFactory;
 use App\Exception\ItemNotFoundInDatabaseException;
@@ -25,9 +26,10 @@ class ProductController extends AbstractController
     {
         $paginationDto = PaginationDtoFactory::createFromRequest($request);
         $sortDto = SortDtoFactory::createFromRequest();
+        $includes = IncludesDtoFactory::createFromRequest($request);
 
         return new JsonResponse(
-            $productService->getPaginatedProducts($paginationDto, $sortDto),
+            $productService->getPaginatedProducts($paginationDto, $sortDto, $includes),
             Response::HTTP_OK
         );
     }
