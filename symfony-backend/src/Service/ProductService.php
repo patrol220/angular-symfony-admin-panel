@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Dto\Product\ProductDto;
 use App\Dto\Request\CursorDto;
+use App\Dto\Request\IncludesDto;
 use App\Dto\Request\PaginationDto;
 use App\Dto\Request\SortDto;
 use App\Entity\Product\Product;
@@ -94,7 +95,7 @@ class ProductService
         return $this->fractal->createData($resource)->toArray();
     }
 
-    public function getPaginatedProducts(PaginationDto $paginationDto, SortDto $sortDto)
+    public function getPaginatedProducts(PaginationDto $paginationDto, SortDto $sortDto, IncludesDto $includesDto)
     {
         $productsQueryBuilder = $this->productRepository->getSortedProductsQueryBuilder($sortDto);
 
@@ -118,6 +119,11 @@ class ProductService
         );
 
         $resource->setPaginator($paginatorAdapter);
+
+        if ($includesDto->getIncludes() !== null) {
+            $this->fractal->parseIncludes($includesDto->getIncludes());
+        }
+
         return $this->fractal->createData($resource)->toArray();
     }
 
