@@ -7,6 +7,7 @@ import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {FilterModel} from '../../../models/Request/filter.model';
 import {debounce} from 'lodash';
 import {NotificationsService} from 'angular2-notifications';
+import {ProductCategoryResponseModel} from '../../../models/Response/product-category-response.model';
 
 @Component({
   selector: 'app-add-category-dialog',
@@ -16,7 +17,7 @@ import {NotificationsService} from 'angular2-notifications';
 export class AddCategoryDialogComponent implements OnInit {
 
   public addCategoryForm: FormGroup;
-  public parentCategoryAutocomplete: ProductCategoryModel[];
+  public parentCategoryAutocomplete: ProductCategoryResponseModel[];
   public formControl = new FormControl();
 
   constructor(

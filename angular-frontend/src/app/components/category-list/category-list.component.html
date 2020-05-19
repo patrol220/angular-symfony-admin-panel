@@ -14,7 +14,7 @@
 
   <ng-container matColumnDef="parent">
     <mat-header-cell *matHeaderCellDef mat-sort-header>parent</mat-header-cell>
-    <mat-cell *matCellDef="let category">{{category.parent}}</mat-cell>
+    <mat-cell *matCellDef="let category">{{category.parent !== undefined ? category.parent.data.name : 'no parent category'}}</mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="['id', 'name', 'parent']"></mat-header-row>

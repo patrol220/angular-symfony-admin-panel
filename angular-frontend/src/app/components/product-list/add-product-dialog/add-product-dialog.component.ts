@@ -9,6 +9,7 @@ import {ProductCategoryModel} from '../../../models/product-category.model';
 import {debounce} from 'lodash';
 import {ProductModel} from '../../../models/product.model';
 import {NotificationsService} from 'angular2-notifications';
+import {ProductCategoryResponseModel} from '../../../models/Response/product-category-response.model';
 
 @Component({
   selector: 'app-add-product-dialog',
@@ -18,7 +19,7 @@ import {NotificationsService} from 'angular2-notifications';
 export class AddProductDialogComponent implements OnInit {
 
   addProductForm: FormGroup;
-  categoryAutocomplete: ProductCategoryModel[];
+  categoryAutocomplete: ProductCategoryResponseModel[];
   formControl = new FormControl();
   onAdd = new EventEmitter();
 
