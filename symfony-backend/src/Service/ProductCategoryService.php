@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Dto\Request\FiltersDto;
+use App\Dto\Request\IncludesDto;
 use App\Dto\Request\PaginationDto;
 use App\Dto\Request\SortDto;
 use App\Entity\Product\ProductCategory;
@@ -38,7 +39,8 @@ class ProductCategoryService
     public function getPaginatedCategories(
         PaginationDto $paginationDto,
         SortDto $sortDto,
-        FiltersDto $filtersDto
+        FiltersDto $filtersDto,
+        IncludesDto $includesDto
     ) {
         $productsQueryBuilder = $this->productCategoryRepository
             ->getSortedAndFilteredCategoriesQueryBuilder($sortDto, $filtersDto);
@@ -61,7 +63,9 @@ class ProductCategoryService
             return $router->generate($route, $newParams, 0);
         }
         );
-
+        if($includesDto->getIncludes() !== null) {
+            $this->fractal->parseIncludes($includesDto->getIncludes());
+        }
         $resource->setPaginator($paginatorAdapter);
         return $this->fractal->createData($resource)->toArray();
     }

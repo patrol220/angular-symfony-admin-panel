@@ -18,7 +18,13 @@ export class ProductCategoriesService {
   constructor(private http: HttpClient) {
   }
 
-  getCategories(page: number, pageSize: number, sort: Sort, filters: FilterModel[] = null): Observable<ProductsCategoriesResponseModel> {
+  getCategories(
+    page: number,
+    pageSize: number,
+    sort: Sort,
+    filters: Array<FilterModel> = null,
+    includes: Array<string> = null
+  ): Observable<ProductsCategoriesResponseModel> {
     let httpParams = new HttpParams();
 
     if (page !== null) {
@@ -34,6 +40,12 @@ export class ProductCategoriesService {
       httpParams = httpParams.append('sort', sortParam);
     }
 
+    if (includes !== null) {
+      includes.forEach((include: string) => {
+        httpParams = httpParams.append('include', include);
+      });
+    }
+
     if (filters !== null) {
       filters.forEach((filter) => {
         httpParams = httpParams.append('filter[' + filter.key + ']', filter.value);
@@ -45,7 +57,7 @@ export class ProductCategoriesService {
     };
 
     return this.http
-      .get<ProductsCategoriesResponseModel>( API_URL + '/api/categories', options);
+      .get<ProductsCategoriesResponseModel>(API_URL + '/api/categories', options);
   }
 
   addCategory(name: string, parentCategory: ProductCategoryModel) {

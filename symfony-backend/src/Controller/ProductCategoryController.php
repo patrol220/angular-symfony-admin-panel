@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Dto\Request\Factory\FiltersDtoFactory;
+use App\Dto\Request\Factory\IncludesDtoFactory;
 use App\Dto\Request\Factory\PaginationDtoFactory;
 use App\Dto\Request\Factory\SortDtoFactory;
 use App\Service\ProductCategoryService;
@@ -25,9 +26,10 @@ class ProductCategoryController extends AbstractController
         $paginationDto = PaginationDtoFactory::createFromRequest($request);
         $sortDto = SortDtoFactory::createFromRequest();
         $filtersDto = FiltersDtoFactory::createFromRequest($request);
+        $includes = IncludesDtoFactory::createFromRequest($request);
 
         return new JsonResponse(
-            $categoryService->getPaginatedCategories($paginationDto, $sortDto, $filtersDto),
+            $categoryService->getPaginatedCategories($paginationDto, $sortDto, $filtersDto, $includes),
             Response::HTTP_OK
         );
     }

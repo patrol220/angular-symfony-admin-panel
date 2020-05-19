@@ -1,8 +1,8 @@
-import {ProductCategoryModel} from '../product-category.model';
 import {PaginationModel} from './Common/pagination.model';
+import {ProductCategoryResponseModel} from './product-category-response.model';
 
 export interface ProductsCategoriesResponseModel {
-  data: ProductCategoryModel[];
+  data: ProductCategoryResponseModel[];
   meta: {
     pagination: PaginationModel;
   };

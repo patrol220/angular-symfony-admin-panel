@@ -7,12 +7,19 @@ use League\Fractal\TransformerAbstract;
 
 class ProductCategoryTransformer extends TransformerAbstract
 {
+    protected $availableIncludes = [
+        'parent',
+    ];
+
     public function transform(ProductCategory $category)
     {
         return [
             'id' => $category->getId(),
             'name' => $category->getName(),
-            'parent' => $category->getParent() !== null ? $category->getParent()->getId() : null
         ];
+    }
+
+    public function includeParent(ProductCategory $category) {
+        return $category->getParent() !== null ? $this->item($category->getParent(), $this) : null;
     }
 }
