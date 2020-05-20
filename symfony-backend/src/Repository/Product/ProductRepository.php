@@ -95,7 +95,8 @@ class ProductRepository extends AbstractRepository
         $queryBuilder = $this->createQueryBuilder('p');
 
         return $queryBuilder
-            ->addOrderBy('p.created, p.id', 'desc')
+            ->addOrderBy('p.created', 'desc')
+            ->addOrderBy('p.id', 'desc')
             ->setMaxResults($count)
             ->getQuery()
             ->getResult();

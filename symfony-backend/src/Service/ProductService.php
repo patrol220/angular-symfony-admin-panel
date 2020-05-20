@@ -9,6 +9,7 @@ use App\Dto\Request\PaginationDto;
 use App\Dto\Request\SortDto;
 use App\Entity\Product\Product;
 use App\Exception\ItemNotFoundInDatabaseException;
+use App\Message\Product\NewProductAdded;
 use App\Repository\Product\ProductCategoryRepository;
 use App\Repository\Product\ProductRepository;
 use App\Transformer\ProductTransformer;
@@ -20,6 +21,7 @@ use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
@@ -34,19 +36,22 @@ class ProductService
     private $router;
     private $cache;
     private $productCategoryRepository;
+    private $messageBus;
 
     public function __construct(
         EntityManagerInterface $entityManager,
         ProductRepository $productRepository,
         RouterInterface $router,
         CacheInterface $cache,
-        ProductCategoryRepository $productCategoryRepository
+        ProductCategoryRepository $productCategoryRepository,
+        MessageBusInterface $messageBus
     ) {
         $this->entityManager = $entityManager;
         $this->productRepository = $productRepository;
         $this->router = $router;
         $this->cache = $cache;
         $this->productCategoryRepository = $productCategoryRepository;
+        $this->messageBus = $messageBus;
         $this->fractal = new Manager();
     }
 
@@ -122,11 +127,9 @@ class ProductService
         );
 
         $resource->setPaginator($paginatorAdapter);
-
         if ($includesDto->getIncludes() !== null) {
             $this->fractal->parseIncludes($includesDto->getIncludes());
         }
-
         return $this->fractal->createData($resource)->toArray();
     }
 
@@ -162,6 +165,8 @@ class ProductService
         $this->entityManager->persist($product);
         $this->entityManager->flush();
 
+        $this->messageBus->dispatch(new NewProductAdded());
+
         return $product->getId();
     }
 
@@ -195,5 +200,11 @@ class ProductService
         $resource = new Item($this->productRepository->find($id), new ProductTransformer());
 
         return $this->fractal->createData($resource)->toArray();
+    }
+
+    public function refreshProductsStatisticsCache()
+    {
+        $this->cache->delete(self::PRODUCTS_STATISTICS_CACHE_KEY);
+        $this->getProductsStatistics();
     }
 }
