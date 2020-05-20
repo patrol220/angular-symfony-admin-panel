@@ -26,6 +26,10 @@ class ProductTransformer extends TransformerAbstract
 
     public function includeCategory(Product $product)
     {
+        if ($product->getCategory() === null) {
+            return null;
+        }
+
         return $this->item($product->getCategory(), new ProductCategoryTransformer());
     }
 }

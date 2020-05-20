@@ -77,7 +77,7 @@ export class ProductService {
   addProduct(newProduct: ProductModel) {
     return this.http.post(API_URL + '/api/product', {
       name: newProduct.name,
-      category_id: newProduct.category.data !== null ? newProduct.category.data.id : null,
+      category_id: newProduct.category.data !== undefined ? newProduct.category.data.id : null,
       weight: newProduct.weight,
       price: newProduct.price
     });

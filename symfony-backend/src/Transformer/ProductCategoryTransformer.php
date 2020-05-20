@@ -11,15 +11,20 @@ class ProductCategoryTransformer extends TransformerAbstract
         'parent',
     ];
 
-    public function transform(ProductCategory $category)
+    public function transform(?ProductCategory $category)
     {
+        if ($category === null) {
+            return null;
+        }
+
         return [
             'id' => $category->getId(),
             'name' => $category->getName(),
         ];
     }
 
-    public function includeParent(ProductCategory $category) {
+    public function includeParent(ProductCategory $category)
+    {
         return $category->getParent() !== null ? $this->item($category->getParent(), $this) : null;
     }
 }
