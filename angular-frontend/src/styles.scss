@@ -1,16 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/grid";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 @keyframes loading-content-animation-border {
-  0% {border-color: rgba(0, 0, 0, 0)}
-  50% {border-color: rgb(4, 152, 210)}
-  100% {border-color: rgba(0, 0, 0, 0)}
+  0% {
+    border-color: rgba(0, 0, 0, 0)
+  }
+  50% {
+    border-color: rgb(4, 152, 210)
+  }
+  100% {
+    border-color: rgba(0, 0, 0, 0)
+  }
 }
+
 @keyframes loading-content-animation-opacity {
-  0% {opacity: 0}
-  100% {opacity: 0.8}
+  0% {
+    opacity: 0
+  }
+  100% {
+    opacity: 0.8
+  }
 }
 
 .loading-content:after {
@@ -18,15 +39,29 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   animation: loading-content-animation-border 1s infinite, loading-content-animation-opacity 500ms;
   content: '';
   position: absolute;
-  width: 100%; height:100%;
-  top:0; left:0;
-  background:rgba(0,0,0,0.6);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
   opacity: 0.8;
 }
 
 .actions-row {
   margin-bottom: 10px;
+
   button {
     margin-right: 10px;
   }
+}
+
+* {
+  &:active,
+  :focus {
+    outline: none !important; // 1
+  }
+}
+
+a:not(.mat-button):not(.mat-raised-button):not(.mat-fab):not(.mat-mini-fab):not([mat-list-item]) {
+  color: #3f51b5; // 2
 }

@@ -26,6 +26,8 @@ use Symfony\Contracts\Cache\ItemInterface;
 
 class ProductService
 {
+    const PRODUCTS_STATISTICS_CACHE_KEY = 'products_statistics';
+
     private $entityManager;
     private $productRepository;
     private $fractal;
@@ -166,11 +168,20 @@ class ProductService
     public function getProductsStatistics()
     {
         $productsStatistics = $this->cache->get(
-            'products_statistics',
+            self::PRODUCTS_STATISTICS_CACHE_KEY,
             function (ItemInterface $item) {
                 $item->expiresAfter(3600);
 
-                return $this->productRepository->getProductsStatistics();
+                $resource = new Collection(
+                    $this->productRepository->getNewestProducts(10),
+                    new ProductTransformer()
+                );
+                $newestProducts = $this->fractal->createData($resource)->toArray();
+
+                return [
+                    'count' => $this->productRepository->getProductsCount()['products_count'],
+                    'new' => $newestProducts
+                ];
             }
         );
 

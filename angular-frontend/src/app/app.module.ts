@@ -36,6 +36,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { AddProductDialogComponent } from './components/product-list/add-product-dialog/add-product-dialog.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatDialogModule,
     FormsModule,
     MatAutocompleteModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatGridListModule
   ],
   providers: [
     {
