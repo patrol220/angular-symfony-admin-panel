@@ -83,11 +83,21 @@ class ProductRepository extends AbstractRepository
         return $queryBuilder;
     }
 
-    public function getProductsStatistics() {
+    public function getProductsCount() {
         $queryBuilder = $this->createQueryBuilder('ps');
 
-        return $queryBuilder->select('SUM(ps.price) as price_sum, COUNT(ps) as products_count')
+        return $queryBuilder->select('COUNT(ps) as products_count')
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    public function getNewestProducts(int $count) {
+        $queryBuilder = $this->createQueryBuilder('p');
+
+        return $queryBuilder
+            ->addOrderBy('p.created, p.id', 'desc')
+            ->setMaxResults($count)
+            ->getQuery()
+            ->getResult();
     }
 }

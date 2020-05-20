@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {DashboardService} from '../../services/dashboard/dashboard.service';
+import {DashboardStatisticsResponseModel} from '../../models/Response/dashboard-statistics-response.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dashboardService: DashboardService) {
+  }
+
+  statistics: DashboardStatisticsResponseModel;
 
   ngOnInit(): void {
+    this.getStatistics();
+  }
+
+  getStatistics() {
+    this.dashboardService.getStatistics().subscribe((responseData: DashboardStatisticsResponseModel) => {
+      this.statistics = responseData;
+    });
   }
 
 }

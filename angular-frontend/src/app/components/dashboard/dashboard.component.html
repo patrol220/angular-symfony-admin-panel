@@ -1,1 +1,27 @@
-<p>dashboard works!</p>
+<div *ngIf="statistics !== undefined">
+  <div class="row">
+    <div class="col-md-4">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>Products statistics</mat-card-title>
+          <mat-card-subtitle>Some statistics</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="general-statistics">
+            <p><b>Total products in system: </b> {{statistics.products.count}}</p>
+          </div>
+          <div class="new-products-list">
+            <h2>Newly added products:</h2>
+              <div *ngFor="let product of statistics.products.new.data">
+                <button [routerLink]="['/admin-panel/product', product.id]" mat-button>{{product.name}}</button>
+                <mat-divider></mat-divider>
+              </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<div *ngIf="statistics === undefined">
+  <mat-spinner></mat-spinner>
+</div>
