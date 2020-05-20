@@ -201,4 +201,10 @@ class ProductService
 
         return $this->fractal->createData($resource)->toArray();
     }
+
+    public function refreshProductsStatisticsCache()
+    {
+        $this->cache->delete(self::PRODUCTS_STATISTICS_CACHE_KEY);
+        $this->getProductsStatistics();
+    }
 }
