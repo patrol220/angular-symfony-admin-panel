@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\User;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Table(name="users", schema="users")
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\User\UserRepository")
  */
 class User implements UserInterface
 {
@@ -38,6 +38,12 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @var UserSettings
+     * @ORM\OneToOne(targetEntity="UserSettings", mappedBy="user", cascade={"persist"})
+     */
+    private $settings;
 
     public function getId(): ?int
     {
@@ -109,6 +115,22 @@ class User implements UserInterface
     public function setEmail($email): void
     {
         $this->email = $email;
+    }
+
+    /**
+     * @return UserSettings
+     */
+    public function getSettings(): ?UserSettings
+    {
+        return $this->settings;
+    }
+
+    /**
+     * @param UserSettings $settings
+     */
+    public function setSettings(UserSettings $settings): void
+    {
+        $this->settings = $settings;
     }
 
     /**

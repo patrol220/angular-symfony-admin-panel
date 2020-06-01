@@ -12,6 +12,6 @@ fos_elastica:
           persistence:
             # the driver can be orm, mongodb or phpcr
             driver: orm
-            model: App\Entity\User
+            model: App\Entity\User\User
             provider: ~
             finder: ~
