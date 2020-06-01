@@ -41,8 +41,7 @@ class User implements UserInterface
 
     /**
      * @var UserSettings
-     * @ORM\OneToOne(targetEntity="UserSettings")
-     * @ORM\JoinColumn(name="settings", referencedColumnName="user_id")
+     * @ORM\OneToOne(targetEntity="UserSettings", mappedBy="user", cascade={"persist"})
      */
     private $settings;
 
@@ -121,7 +120,7 @@ class User implements UserInterface
     /**
      * @return UserSettings
      */
-    public function getSettings(): UserSettings
+    public function getSettings(): ?UserSettings
     {
         return $this->settings;
     }

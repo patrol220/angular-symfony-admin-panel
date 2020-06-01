@@ -18,4 +18,5 @@ class UserSettingsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, UserSettings::class);
     }
+
 }

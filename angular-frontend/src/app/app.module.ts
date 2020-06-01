@@ -37,6 +37,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { AddProductDialogComponent } from './components/product-list/add-product-dialog/add-product-dialog.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { UserSettingsComponent } from './components/user-settings/user-settings.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     CategoryListComponent,
     ProductComponent,
     AddCategoryDialogComponent,
-    AddProductDialogComponent
+    AddProductDialogComponent,
+    UserSettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +81,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     FormsModule,
     MatAutocompleteModule,
     MatProgressSpinnerModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCheckboxModule
   ],
   providers: [
     {

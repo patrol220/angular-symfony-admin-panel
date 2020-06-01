@@ -34,10 +34,6 @@ export class ToolbarComponent implements OnInit {
     return this.router.url.includes('/admin-panel');
   }
 
-  settings() {
-    console.log(this.router.url);
-  }
-
   openSidenav() {
     this.sidenavService.open();
   }

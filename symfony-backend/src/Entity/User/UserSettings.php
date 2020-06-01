@@ -7,14 +7,14 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Table(name="users_settings", schema="users")
  * @ORM\Entity(repositoryClass="App\Repository\User\UserSettingsRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class UserSettings
 {
     /**
      * @var $user User
      * @ORM\Id()
-     * @ORM\OneToOne(targetEntity="User")
-     * @ORM\Column(name="user_id", nullable=false)
+     * @ORM\OneToOne(targetEntity="User", inversedBy="settings", fetch="LAZY")
      */
     private $user;
 
@@ -39,5 +39,21 @@ class UserSettings
         $notificationsSubscriptions = $this->notificationsSubscriptions;
 
         return array_unique($notificationsSubscriptions);
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser(User $user): void
+    {
+        $this->user = $user;
     }
 }

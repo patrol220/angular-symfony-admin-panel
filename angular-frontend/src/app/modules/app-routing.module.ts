@@ -8,6 +8,7 @@ import {DashboardComponent} from '../components/dashboard/dashboard.component';
 import {AuthGuard} from '../guards/auth.guard';
 import {CategoryListComponent} from '../components/category-list/category-list.component';
 import {ProductComponent} from '../components/product/product.component';
+import {UserSettingsComponent} from '../components/user-settings/user-settings.component';
 
 const routes: Routes = [
   {
@@ -19,8 +20,9 @@ const routes: Routes = [
   {path: 'admin-panel/products', component: ProductListComponent, canActivate: [AuthGuard]},
   {path: 'admin-panel/product/:id', component: ProductComponent, canActivate: [AuthGuard]},
   {path: 'admin-panel/categories', component: CategoryListComponent, canActivate: [AuthGuard]},
+  {path: 'admin-panel/settings', component: UserSettingsComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegistrationComponent}
+  {path: 'register', component: RegistrationComponent},
 ];
 
 @NgModule({
