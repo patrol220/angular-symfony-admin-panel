@@ -1,0 +1,15 @@
+<div *ngIf="user !== undefined">
+  <form [formGroup]="saveSettingsForm" (submit)="onSubmit(saveSettingsForm.value)">
+    <div *ngFor="let notificationType of availableNotificationTypes; let i = index">
+      <label>
+        <mat-checkbox [value]="notificationType.type" (change)="onCheckboxChange($event)" [checked]="notificationType.selected">
+          {{notificationType.name}}
+        </mat-checkbox>
+      </label>
+    </div>
+    <button type="submit">Save settings</button>
+  </form>
+</div>
+<div *ngIf="user === undefined">
+  <mat-spinner></mat-spinner>
+</div>
