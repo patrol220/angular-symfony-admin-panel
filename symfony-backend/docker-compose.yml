@@ -21,6 +21,7 @@ services:
       - db
       - redis
       - elastic
+      - mercure
   nginx:
     image: nginx:1.15.3-alpine
     restart: on-failure
@@ -48,6 +49,13 @@ services:
       memlock:
         soft: -1
         hard: -1
+  mercure:
+    image: dunglas/mercure
+    environment:
+      JWT_KEY: ${MERCURE_JWT_KEY}
+      ADDR: ${MERCURE_ADDR}
+      ALLOW_ANONYMOUS:
+      CORS_ALLOWED_ORIGINS: ${MERCURE_CORS_ALLOWED_ORIGINS}
 volumes:
   my_dbdata:
   elastic_data:
